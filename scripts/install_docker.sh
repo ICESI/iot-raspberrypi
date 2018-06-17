@@ -20,3 +20,4 @@ sudo usermod -aG docker pi
 su pi
 newgrp docker
 docker pull hypriot/rpi-python
+docker pull hypriot/rpi-traefik
