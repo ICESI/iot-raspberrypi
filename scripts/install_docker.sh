@@ -17,3 +17,6 @@ sudo apt-get update -y
 sudo apt-get install docker-ce -y
 sudo pip3 install docker-compose
 sudo usermod -aG docker pi
+su pi
+newgrp docker
+docker pull hypriot/rpi-python
