@@ -2,6 +2,7 @@
 # reference: https://docs.docker.com/install/linux/docker-ce/debian/
 # user: pi
 sudo apt-get update -y
+sudo apt install python3-pip -y
 sudo apt-get install \
      apt-transport-https \
      ca-certificates \
