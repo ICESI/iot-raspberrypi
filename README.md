@@ -1,2 +1,2 @@
-# iot-ansible
-Playbooks for raspberrypi automation
+# iot-raspberrypi
+Material for RaspberryPI automation
