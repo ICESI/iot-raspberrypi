@@ -6,5 +6,5 @@ sudo cp ../templates/wifi_rebooter.sh /usr/local/bin/
 echo "Setting permissions on script..."
 sudo chmod +x /usr/local/bin/wifi_rebooter.sh
 echo "Configuring crontab job.."
-echo "*/5 *   * * *   root    /usr/local/bin/wifi_rebooter.sh" | sudo tee /etc/crontab -a
+echo "*/5 * * * * root /usr/local/bin/wifi_rebooter.sh" | sudo tee /etc/crontab -a
 echo "Done"
