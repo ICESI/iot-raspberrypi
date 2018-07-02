@@ -4,6 +4,7 @@
 echo "Enabling raspicam driver on video0"
 sudo rpi-update
 sudo modprobe bcm2835-v4l2
+sudo echo 'bcm2835-v4l2' >> /etc/modules
 echo "Installing motion..."
 sudo apt install motion -y
 echo "Updating configurations..."
