@@ -1,5 +1,7 @@
 #!/bin/bash
 # user: pi
+echo "Installing python3-pip"
+sudo apt install python3-pip -y
 echo "Installing virtualenvwrapper..."
 pip3 install virtualenvwrapper --user
 cat <<EOT >> ~/.zshrc
