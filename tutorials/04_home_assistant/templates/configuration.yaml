@@ -1,0 +1,127 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Colseguros Headquarters
+  # Location required to calculate the time the sun rises and sets
+  latitude: 3.428288
+  longitude: -76.531091
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 1000
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/Bogota
+
+# Show links to resources in log and frontend
+# introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  # Uncomment this to add a password (recommended!)
+  api_password: raspberry 
+  # Uncomment this if you are using SSL or running in Docker etc
+  base_url: 0.0.0.0:8123
+
+# Checks for available updates
+updater:
+
+# Discover some devices automatically
+# discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time.
+history:
+
+# View all events in a logbook
+logbook:
+
+# Track the sun
+sun:
+
+# Weather Prediction
+sensor:
+  platform: yr
+
+# Text to speech
+tts:
+  - platform: google
+    language: es
+
+# Example configuration.yaml entry
+#tts:
+#  - platform: amazon_polly
+#    aws_access_key_id: AWS_ACCESS_KEY_ID
+#    aws_secret_access_key: AWS_SECRET_ACCESS_KEY
+#    profile_name: AWS_PROFILE
+#    region_name: 'us-east-1'
+#    voice: Joanna
+
+group: !include groups.yaml
+
+camera:
+  - platform: mjpeg
+    mjpeg_url: http://192.168.31.194:8081
+    username: pi
+    password: raspberry
+    authentication: digest
+    name: Outdoors
+
+  - platform: mjpeg
+    mjpeg_url: http://192.168.31.233:8081
+    username: pi
+    password: raspberry
+    authentication: digest
+    name: LivingRoom-Side
+
+  - platform: mjpeg
+    mjpeg_url: http://192.168.31.117:8081
+    username: pi
+    password: raspberry
+    authentication: digest
+    name: Bedroom-Side
+
+#  - platform: local_file
+#    file_path: /home/homeassistant/images/image.jpg
+#    name: Bedroom-Top
+
+media_player:
+  - platform: vlc
+    name: bedroom_speaker
+    arguments: '--alsa-audio-device=hw:1,0 --random'
+    volume_level: 0.5
+    command_off: "pkill vlc"
+
+##mqtt:
+##  broker: localhost
+##  port: 1883
+#  client_id: home-assistant-1
+##  keepalive: 60
+##  username: pi
+##  password: raspberry 
+##  protocol: 3.1
+#  birth_message:
+#    topic: "tele/hass1/LWT"
+#    payload: "Online"
+#    qos: 1
+#    retain: true
+#  will_message:
+#    topic: "tele/hass1/LWT"
+#    payload: "Offline"
+#    qos: 1
+#    retain: true
+
+#light:
+#  - platform: mqtt
+#    name: "Bedroom Light"
+#    state_topic: "stat/sonoff/POWER"
+#    command_topic: "cmnd/sonoff/POWER"
+#    payload_on: "ON"
+#    payload_off: "OFF"
+
+script: !include_dir_merge_named script

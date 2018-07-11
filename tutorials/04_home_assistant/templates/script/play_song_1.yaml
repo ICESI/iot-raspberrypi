@@ -1,0 +1,8 @@
+play_ub40_song:
+  alias: 'play_ub40_song'
+  sequence:
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.bedroom_speaker
+        media_content_id: /home/homeassistant/songs/ub40_falling_in_love.mp3
+        media_content_type: 'music'
