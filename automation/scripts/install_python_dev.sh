@@ -14,4 +14,5 @@ EOT
 source ~/.zshrc
 echo "Installing bpython..."
 pip3 install bpython --user
+pip3 install yapf --user 
 sudo cp /home/pi/.local/bin/bpython /usr/local/bin

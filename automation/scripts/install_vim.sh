@@ -5,8 +5,8 @@ sudo apt install vim -y
 echo "Updating configurations..."
 cp ../templates/vimrc ~/.vimrc
 echo "Installing plugins..."
-mkdir -p ~/.vim/bundle
+mkdir -p ~/.vim/autoload ~/.vim/bundle
 cd ~/.vim/bundle
 git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
-mkdir -p ~/.vim/autoload ~/.vim/bundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
