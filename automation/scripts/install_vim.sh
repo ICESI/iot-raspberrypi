@@ -6,7 +6,7 @@ echo "Installing python support..."
 sudo apt-get install vim-nox -y
 # sudo apt-get install vim-nox-py2 -y
 echo "Updating configurations..."
-cp ../templates/vimrc_pathogen ~/.vimrc
+cp ../templates/vimrc_bundle ~/.vimrc
 echo "Installing plugins..."
 mkdir -p ~/.vim/autoload ~/.vim/bundle
 cd ~/.vim/bundle
