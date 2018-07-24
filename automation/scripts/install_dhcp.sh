@@ -1,5 +1,6 @@
 #!/bin/bash
 # user: pi
+# url: https://www.raspberrypi.org/documentation/configuration/wireless/access-point.md
 sudo apt update -y
 sudo apt install dnsmasq hostapd -y
 sudo cp ../templates/dhcp/dhcpcd.conf /etc/dhcpcd.conf
