@@ -1,7 +1,7 @@
 #!/bin/bash
 # user: pi
 echo "Installing vim..."
-sudo apt install vim -y
+sudo apt install vim exuberant-ctags ack-grep -y
 echo "Installing python support..."
 sudo apt-get install vim-nox -y
 # sudo apt-get install vim-nox-py2 -y
