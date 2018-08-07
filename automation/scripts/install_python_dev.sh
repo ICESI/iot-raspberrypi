@@ -16,5 +16,5 @@ EOT
 source ~/.zshrc
 echo "Installing bpython..."
 pip3 install bpython --user
-pip3 install yapf --user 
+pip3 install pep8 flake8 pyflakes isort yapf --user
 sudo cp /home/pi/.local/bin/bpython /usr/local/bin
