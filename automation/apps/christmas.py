@@ -1,3 +1,5 @@
+# Reference: https://vasilev.link/blog/posts/the-internet-of-things-with-rabbitmq-python-mqtt-and-amqp
+
 import paho.mqtt.client as paho
 import time
 
