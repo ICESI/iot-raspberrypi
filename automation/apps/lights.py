@@ -11,8 +11,8 @@ def on_publish(client, userdata, mid):
     print("mid: "+str(mid))
 
 mqtthost = "localhost"
-mqttuser = "mqtt_user"
-mqttpass = "mqtt_password"
+mqttuser = "ha_user"
+mqttpass = "ha_password"
 mqtttopic = "cmnd.sonoff_bedroom.POWER"
 
 client = paho.Client()
