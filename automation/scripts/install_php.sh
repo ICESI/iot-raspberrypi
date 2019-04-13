@@ -21,5 +21,13 @@ sudo mysql -uroot -p
 create database wordpress;
 GRANT ALL PRIVILEGES ON wordpress.* TO 'root'@'localhost' IDENTIFIED BY 'YOURPASSWORD';
 FLUSH PRIVILEGES;
+vi /etc/apache2/apache2.conf
+<Directory /var/www/>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+</Directory>
+sudo systemctl restart apache2
 http://localhost/wp-admin.
+install and activate plugin classic editor on wordpress
 fi
