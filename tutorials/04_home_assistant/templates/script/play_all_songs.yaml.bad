@@ -1,0 +1,8 @@
+play_all_songs:
+  alias: 'play_all_songs'
+  sequence:
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.bedroom_speaker
+        media_content_id: /home/homeassistant/songs/playlist.m3u
+        media_content_type: 'music'

@@ -1,0 +1,8 @@
+play_taylor_song:
+  alias: 'play_taylor_song'
+  sequence:
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.bedroom_speaker
+        media_content_id: /home/homeassistant/songs/taylor_swift_love_story.mp3
+        media_content_type: 'music'

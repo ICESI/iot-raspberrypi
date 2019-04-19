@@ -1,0 +1,8 @@
+play_timberlake_song:
+  alias: 'play_justintimberlake_song'
+  sequence:
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.bedroom_speaker
+        media_content_id: /home/homeassistant/songs/justin_timberlake_mirrors.mp3
+        media_content_type: 'music'

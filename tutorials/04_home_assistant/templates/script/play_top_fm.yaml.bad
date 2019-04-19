@@ -1,0 +1,8 @@
+play_top_fm:
+  alias: 'play_top_fm'
+  sequence:
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.bedroom_speaker
+        media_content_id: http://www.topfm.rs/listen.pls
+        media_content_type: 'playlist'
