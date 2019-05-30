@@ -18,3 +18,10 @@ echo "Installing bpython..."
 pip3 install bpython --user
 pip3 install pep8 flake8 pyflakes isort yapf --user
 sudo cp /home/pi/.local/bin/bpython /usr/local/bin
+
+# with pyenv
+#export WORKON_HOME=~/.virtualenvs
+#export PROJECT_HOME=$HOME/Devel
+#export VIRTUALENVWRAPPER_PYTHON=/Users/danielbarragan/.pyenv/shims/python
+#export VIRTUALENVWRAPPER_VIRTUALENV=$HOME/.pyenv/versions/3.7.3/bin/virtualenv
+#source ~/.pyenv/versions/3.7.3/bin/virtualenvwrapper.sh
