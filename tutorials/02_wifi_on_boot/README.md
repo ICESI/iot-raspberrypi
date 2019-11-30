@@ -1,3 +1,5 @@
+### Wifi
+
 ```
 vi /etc/wpa_supplicant/wpa_supplicant.conf
 ```
@@ -15,3 +17,20 @@ network={
 ```
 
 Poner un archivo ssh en la partición /boot
+
+### Ethernet
+
+Connect raspberry pi to your local network
+
+Run the ping command:
+```
+ping raspberrypi.local
+```
+
+Connect via ssh:
+```
+ssh pi@raspberrypi.local
+```
+
+### References
+* https://community.blokas.io/t/raspberry-pi-find-raspberry-pis-ip-address/596
