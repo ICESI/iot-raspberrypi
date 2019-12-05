@@ -1,0 +1,12 @@
+tunnels:
+  flask:
+    proto: http
+    addr: 5000
+  ssh:
+    proto: tcp
+    addr: 22
+  nginx:
+    proto: http
+    addr: 80
+
+authtoken: 75k12Q4QsUP7jgE6ftFj3_36SPqFF2f9bGqQKFkckCy
