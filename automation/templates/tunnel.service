@@ -5,7 +5,7 @@ After=network.target
 [Service]
 Environment="AUTOSSH_GATETIME=0"
 #ExecStart=/usr/bin/autossh -M 0 -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" -R 0:localhost:22 tunnel.us.ngrok.com tcp 22
-ExecStart=ngrok start ssh nginx
+ExecStart=/usr/bin/autossh -M 0 -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" -R 80:localhost:80 tunnel.us.ngrok.com http
 
 [Install]
 WantedBy=multi-user.target
