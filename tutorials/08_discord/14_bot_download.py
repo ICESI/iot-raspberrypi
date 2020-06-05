@@ -1,28 +1,30 @@
-
 # bot.py
 import os
 import random
+import os
 import asyncio
 from discord import FFmpegPCMAudio
 from discord.ext.commands import Bot
 from dotenv import load_dotenv
-import pdb
+from pytube import YouTube
 
 load_dotenv()
+extension = 'mp4'
 TOKEN = os.getenv('DISCORD_TOKEN')
 bot = Bot(command_prefix='*')
 
 @bot.command(
     name='play',
     help='play song',
-    description='Plays a mp3 in the voice channel',
+    description='Plays a mp4 in the voice channel',
     pass_context=True,
 )
-async def play(context):
+async def play(context, arg):
     # grab the user who sent the command
     user=context.message.author
     channel_name = user.voice.channel.name
     channel_voice = user.voice.channel
+    youtube_url = arg
 
     # message                                                                   
     await context.send(':fireworks: DaLaPoLis joined to {0} channel'.format(channel_name))
@@ -31,13 +33,26 @@ async def play(context):
     if channel_name!= None:
         # create StreamPlayer
         voice_client = await channel_voice.connect()
-        player = voice_client.play(FFmpegPCMAudio("/home/daniel/Music/around_the_world.mp3"), after=lambda: print('done'))
+
+        # Download song
+        await context.send(':robot: Fetching song ...')
+        yt = YouTube(youtube_url)
+        song_title = yt.title
+        song_filename = '{0}.{1}'.format(song_title, extension)
+        yt.streams.get_audio_only().download()
+            
+        # message                                                                   
+        await context.send(':musical_keyboard: Playing {0} :musical_keyboard:'.format(song_title))
+
+        # Play music
+        player = voice_client.play(FFmpegPCMAudio(song_filename), after=lambda: print('done'))
 
         # Check if audio is playing
         while voice_client.is_playing():
             await asyncio.sleep(1)
-            
+        
         # disconnect after the player has finished
+        os.remove(song_filename)
         voice_client.stop()
         await voice_client.disconnect()
     else:
@@ -67,3 +82,4 @@ async def stop(context):
         await context.send('User is not in a voice channel')
 
 bot.run(TOKEN)
+
