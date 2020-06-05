@@ -3,6 +3,7 @@ import os
 import random
 import os
 import asyncio
+import uuid
 from discord import FFmpegPCMAudio
 from discord.ext.commands import Bot
 from dotenv import load_dotenv
@@ -36,23 +37,24 @@ async def play(context, arg):
 
         # Download song
         await context.send(':robot: Fetching song ...')
+        file_id = uuid.uuid1().hex
         yt = YouTube(youtube_url)
-        yt.streams.get_audio_only().download()
+        yt.streams.get_audio_only().download(filename=file_id)
         song_title = yt.title
-        song_filename = '{0}.{1}'.format(song_title, extension)
+        filename = '{0}.{1}'.format(file_id, extension)
             
         # message                                                                   
         await context.send(':musical_keyboard: Playing: {0} :musical_keyboard:'.format(song_title))
 
         # Play music
-        player = voice_client.play(FFmpegPCMAudio(song_filename), after=lambda: print('done'))
+        player = voice_client.play(FFmpegPCMAudio(filename), after=lambda: print('done'))
 
         # Check if audio is playing
         while voice_client.is_playing():
             await asyncio.sleep(1)
         
         # disconnect after the player has finished
-        os.remove(song_filename)
+        os.remove(filename)
         voice_client.stop()
         await voice_client.disconnect()
     else:
