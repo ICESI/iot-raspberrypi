@@ -4,6 +4,7 @@ import random
 import os
 import asyncio
 import uuid
+from discord import Activity, ActivityType 
 from discord import FFmpegPCMAudio
 from discord.ext.commands import Bot
 from dotenv import load_dotenv
@@ -27,7 +28,7 @@ async def play(context, arg):
     channel_voice = user.voice.channel
     youtube_url = arg
 
-    # message                                                                   
+    # Sending message to channel                                                                    
     await context.send(':fireworks: DaLaPoLis joined to {0} channel'.format(channel_name))
 
     # only play music if user is in a voice channel
@@ -43,8 +44,11 @@ async def play(context, arg):
         song_title = yt.title
         filename = '{0}.{1}'.format(file_id, extension)
             
-        # message                                                                   
+        # Sending message to channel                                                                  
         await context.send(':musical_keyboard: Playing: {0} :musical_keyboard:'.format(song_title))
+
+        # Setting bot status
+        await bot.change_presence(activity=Activity(type=ActivityType.listening, name=song_title))
 
         # Play music
         player = voice_client.play(FFmpegPCMAudio(filename), after=lambda: print('done'))
