@@ -37,12 +37,12 @@ async def play(context, arg):
         # Download song
         await context.send(':robot: Fetching song ...')
         yt = YouTube(youtube_url)
+        yt.streams.get_audio_only().download()
         song_title = yt.title
         song_filename = '{0}.{1}'.format(song_title, extension)
-        yt.streams.get_audio_only().download()
             
         # message                                                                   
-        await context.send(':musical_keyboard: Playing {0} :musical_keyboard:'.format(song_title))
+        await context.send(':musical_keyboard: Playing: {0} :musical_keyboard:'.format(song_title))
 
         # Play music
         player = voice_client.play(FFmpegPCMAudio(song_filename), after=lambda: print('done'))
