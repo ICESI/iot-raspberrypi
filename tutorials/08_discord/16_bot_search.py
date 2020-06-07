@@ -101,7 +101,7 @@ async def search(context, *args):
         except asyncio.TimeoutError:
             await context.send(':timer: Selection time expired')
         else:
-            await context.send('Added to the queue!')
+            await context.send('Good Bye!')
     else:
         await context.send('User is not in a voice channel')
 
