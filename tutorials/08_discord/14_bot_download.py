@@ -61,6 +61,10 @@ async def play(context, arg):
         os.remove(filename)
         voice_client.stop()
         await voice_client.disconnect()
+
+        # Setting bot status
+        await bot.change_presence(None)
+        
     else:
         await context.send('User is not in a voice channel')
 
