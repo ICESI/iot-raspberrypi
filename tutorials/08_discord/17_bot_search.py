@@ -87,12 +87,17 @@ async def search(context, *args):
 
     for i, result in enumerate(results):
         song_list = song_list + str(i+1) + '-' + result['title'] + '\n'
+
+    if song_list == '':
+        await context.send('Not found')
+        return None
+
     await context.send(':dancer: Choose your a song from the list'+ '\n' + song_list)
 
     if channel_voice_name!= None:
 
         # Validate selection has been received
-        async def check(message):
+        def check(message):
             if message.author != bot.user and message.author == user:
                 return True
 
@@ -141,7 +146,7 @@ async def play_youtube_url(youtube_url, context, voice_client):
     os.remove(filename)
 
     # Setting bot status
-    await bot.change_presence(None)
+    await bot.change_presence(activity=None)
 
 bot.run(TOKEN)
 
