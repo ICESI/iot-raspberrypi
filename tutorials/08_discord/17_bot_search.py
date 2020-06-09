@@ -105,13 +105,7 @@ async def search(context, *args):
             msg = await bot.wait_for('message', timeout=30.0, check=check)
             selection = int(msg.content) - 1
             youtube_url = 'www.youtube.com' + results[selection]['link']
-
-            voice_client = guild.voice_client
-            if not voice_client:
-                voice_client = await channel_voice.connect()
-            await play_youtube_url(youtube_url, context, voice_client)
-            await voice_client.disconnect()
-            voice_client.stop()
+            await play_youtube_url(youtube_url, context, channel_voice)
 
         except asyncio.TimeoutError:
             await context.send(':timer: Selection time expired')
@@ -120,7 +114,7 @@ async def search(context, *args):
     else:
         await context.send('User is not in a voice channel')
 
-async def play_youtube_url(youtube_url, context, voice_client):
+async def play_youtube_url(youtube_url, context, channel_voice):
     # Download song
     await context.send(':robot: Fetching song ...')
     file_id = uuid.uuid1().hex
@@ -128,6 +122,7 @@ async def play_youtube_url(youtube_url, context, voice_client):
     song_title = yt.title
     filename = '{0}.{1}'.format(file_id, extension)
     yt.streams.get_audio_only().download(filename=file_id)
+    guild = context.guild
 
     # Send message to text channel
     await context.send(':musical_keyboard: Playing {0} :musical_keyboard:'.format(song_title))
@@ -135,12 +130,21 @@ async def play_youtube_url(youtube_url, context, voice_client):
     # Setting bot status
     await bot.change_presence(activity=Activity(type=ActivityType.playing, name=song_title))
 
+    # Connect to voice client
+    voice_client = guild.voice_client
+    if not voice_client:
+        voice_client = await channel_voice.connect()
+
     # Play music
-    voice_client.play(FFmpegPCMAudio(filename), after=lambda: print('done'))
+    voice_client.play(FFmpegPCMAudio(filename), after=lambda error: print('done'))
 
     # Check if audio is playing
     while voice_client.is_playing():
         await asyncio.sleep(1)
+
+    # Disconnect from voice client
+    await voice_client.disconnect()
+    voice_client.stop()
 
     # Disconnect after the player has finished
     os.remove(filename)
