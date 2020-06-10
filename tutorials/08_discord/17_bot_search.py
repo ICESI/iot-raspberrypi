@@ -128,7 +128,7 @@ async def play_youtube_url(youtube_url, context, channel_voice):
     await context.send(':musical_keyboard: Playing {0} :musical_keyboard:'.format(song_title))
 
     # Setting bot status
-    await bot.change_presence(activity=Activity(type=ActivityType.playing, name=song_title))
+    # await bot.change_presence(activity=Activity(type=ActivityType.playing, name=song_title))
 
     # Connect to voice client
     voice_client = guild.voice_client
@@ -150,7 +150,7 @@ async def play_youtube_url(youtube_url, context, channel_voice):
     os.remove(filename)
 
     # Setting bot status
-    await bot.change_presence(activity=None)
+    # await bot.change_presence(activity=None)
 
 bot.run(TOKEN)
 
