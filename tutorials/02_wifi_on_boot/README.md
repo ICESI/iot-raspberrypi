@@ -1,5 +1,7 @@
 ### Wifi
 
+Option 1:
+
 ```
 vi /etc/wpa_supplicant/wpa_supplicant.conf
 ```
@@ -15,6 +17,61 @@ network={
     key_mgmt=WPA-PSK
 }
 ```
+
+Option 2
+
+Check that I already have a wifi enabled network interface:
+
+```
+# iwconfig
+wlan0     IEEE 802.11bgn  ESSID:off/any  
+          Mode:Managed  Access Point: Not-Associated   Tx-Power=22 dBm   
+          Retry short limit:7   RTS thr:off   Fragment thr:off
+          Encryption key:off
+          Power Management:on
+```
+
+Check if wpa_suplicant process is running:
+
+```
+# ps -e | grep wpa
+1881 ?        00:00:07 wpa_supplicant
+```
+
+List available access points:
+
+```
+# wpa_cli
+> scan
+> scan_results
+bssid / frequency / signal level / flags / ssid
+e0:60:66:7c:81:7f       2417    -66     [WPA2-PSK-CCMP][ESS]    vodafone817E
+e0:60:66:61:83:4b       2452    -76     [WPA2-PSK-CCMP][WPS][ESS]       vodafone834A
+f8:8e:85:c5:65:c2       2462    -76     [WPA-PSK-CCMP+TKIP][WPS][ESS]   MOVISTAR_65C1
+a8:d3:f7:46:0c:be       2472    -83     [WPA-PSK-CCMP+TKIP][WPA2-PSK-CCMP+TKIP][WPS][ESS]       Orange-0CBC
+
+> add_network
+> set_network 0 ssid "vodafone817E"
+> set_network 0 psk "my-pass-phrase"
+Select it as current:
+
+> enable_network 0
+Connect to it:
+
+> reconnect
+Check the status:
+
+> status
+Exit wpa_cli:
+
+> quit
+From the shell, request DHCP for an IP and net settings:
+
+# dhclient -r
+# dhclient wlan0
+```
+
+### SSH
 
 Poner un archivo ssh y userconf en la partición /bootfs
 
