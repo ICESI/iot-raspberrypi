@@ -3,10 +3,7 @@
 Option 1:
 
 ```
-vi /etc/wpa_supplicant/wpa_supplicant.conf
-```
-
-```
+# vi /etc/wpa_supplicant/wpa_supplicant.conf
 country=CO
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
@@ -73,12 +70,16 @@ From the shell, request DHCP for an IP and net settings:
 
 ### SSH
 
-Poner un archivo ssh y userconf en la partición /bootfs
+Poner un archivo ssh para habilitar el ingreso por ssh
 
 ```
-touch ssh
+# touch ssh
+```
 
-vi userconf
+Poner un archivo userconf para generar un usuario (pi) y contraseña (raspberry)
+
+```
+# vi userconf
 pi:$6$/4.VdYgDm7RJ0qM1$FwXCeQgDKkqrOU3RIRuDSKpauAbBvP11msq9X58c8Que2l1Dwq3vdJMgiZlQSbEXGaY5esVHGBNbCxKLVNqZW1
 ```
 
@@ -88,12 +89,12 @@ Connect raspberry pi to your local network
 
 Run the ping command:
 ```
-ping raspberrypi.local
+# ping raspberrypi.local
 ```
 
 Connect via ssh using the default user pi and the generated password raspberry:
 ```
-ssh pi@raspberrypi.local
+# ssh pi@raspberrypi.local
 ```
 
 ### References
