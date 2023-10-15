@@ -16,12 +16,14 @@ network={
 }
 ```
 
-Poner un archivo ssh en la partición /bootfs
+Poner un archivo ssh y userconf en la partición /bootfs
 
 ```
 touch ssh
-```
 
+vi userconf
+pi:$6$/4.VdYgDm7RJ0qM1$FwXCeQgDKkqrOU3RIRuDSKpauAbBvP11msq9X58c8Que2l1Dwq3vdJMgiZlQSbEXGaY5esVHGBNbCxKLVNqZW1
+```
 
 ### Ethernet
 
@@ -32,7 +34,7 @@ Run the ping command:
 ping raspberrypi.local
 ```
 
-Connect via ssh:
+Connect via ssh using the default user pi and the generated password raspberry:
 ```
 ssh pi@raspberrypi.local
 ```
