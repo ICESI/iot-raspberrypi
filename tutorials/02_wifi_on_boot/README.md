@@ -70,13 +70,13 @@ From the shell, request DHCP for an IP and net settings:
 
 ### SSH
 
-Poner un archivo ssh para habilitar el ingreso por ssh
+Poner un archivo de nombre ssh en la partición bootfs para habilitar el ingreso por ssh
 
 ```
 # touch ssh
 ```
 
-Poner un archivo userconf para generar un usuario (pi) y contraseña (raspberry)
+Poner un archivo de nombre userconf en la partición bootfs para generar un usuario (pi) y contraseña (raspberry)
 
 ```
 # vi userconf
