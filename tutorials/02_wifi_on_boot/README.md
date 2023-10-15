@@ -16,7 +16,12 @@ network={
 }
 ```
 
-Poner un archivo ssh en la partición /boot
+Poner un archivo ssh en la partición /bootfs
+
+```
+touch ssh
+```
+
 
 ### Ethernet
 
