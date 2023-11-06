@@ -7,6 +7,7 @@ SERVER=8.8.8.8
 ping -c2 ${SERVER} > /dev/null
 
 # For the latests version of Raspberry OS
+# Use the command nmtui-connect first, to connect to the wifi network
 # If the return code from ping ($?) is not 0 (meaning there was an error)
 if [ $? != 0 ]
 then
